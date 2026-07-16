@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Brindha ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ff4e8a,#ff7eb3,#ffb6c1);
+    perspective:1000px;
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    color:#fff;
+    font-size:25px;
+    animation:floatHeart linear infinite;
+}
+
+@keyframes floatHeart{
+    from{
+        transform:translateY(100vh) scale(0.5);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120px) scale(1.2);
+        opacity:0;
+    }
+}
+
+/* Balloons */
+.balloon{
+    position:absolute;
+    font-size:40px;
+    animation:balloonFloat linear infinite;
+}
+
+@keyframes balloonFloat{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-150px);
+    }
+}
+
+/* Card Container */
+.scene{
+    width:340px;
+    height:500px;
+}
+
+.card{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform 1s;
+}
+
+.scene:hover .card,
+.scene:active .card{
+    transform:rotateY(180deg);
+}
+
+.front,.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:25px;
+    backface-visibility:hidden;
+    overflow:hidden;
+    padding:30px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.front{
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(15px);
+    color:white;
+}
+
+.back{
+    background:white;
+    color:#ff4e8a;
+    transform:rotateY(180deg);
+}
+
+h1{
+    font-size:2rem;
+}
+
+.cake{
+    font-size:80px;
+    margin:20px 0;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+.message{
+    font-size:15px;
+    line-height:1.8;
+    margin-top:20px;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 28px;
+    border:none;
+    border-radius:50px;
+    background:#ff4e8a;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+@media(max-width:400px){
+    .scene{
+        width:90%;
+        height:500px;
+    }
+
+    h1{
+        font-size:1.7rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Romantic Music -->
+<audio autoplay loop>
+    <source src="romantic-music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="scene">
+    <div class="card">
+
+        <!-- Front Side -->
+        <div class="front">
+            <h1>Happy Birthday<br>Brindha ❤️</h1>
+
+            <div class="cake">🎂</div>
+
+            <p>
+                Tap or hover to open your surprise ✨
+            </p>
+        </div>
+
+        <!-- Back Side -->
+        <div class="back">
+            <h2>For My Dear Brindha 🌹</h2>
+
+            <p class="message">
+                On your special day, I wish your life is filled with
+                happiness, smiles, beautiful memories and endless success.
+                <br><br>
+
+                May every moment of this year bring you joy,
+                laughter and countless reasons to smile.
+                <br><br>
+
+                You deserve all the happiness in the world.
+                Happy Birthday once again, Brindha ❤️✨
+            </p>
+
+            <button onclick="celebrate()">
+                🎉 Celebrate 🎉
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+
+/* Hearts */
+for(let i=0;i<25;i++){
+    let heart=document.createElement('div');
+    heart.className='heart';
+    heart.innerHTML='❤️';
+    heart.style.left=Math.random()*100+'vw';
+    heart.style.animationDuration=(5+Math.random()*5)+'s';
+    heart.style.fontSize=(15+Math.random()*25)+'px';
+    document.body.appendChild(heart);
+}
+
+/* Balloons */
+for(let i=0;i<12;i++){
+    let balloon=document.createElement('div');
+    balloon.className='balloon';
+    balloon.innerHTML='🎈';
+    balloon.style.left=Math.random()*100+'vw';
+    balloon.style.animationDuration=(8+Math.random()*6)+'s';
+    document.body.appendChild(balloon);
+}
+
+/* Confetti */
+function celebrate(){
+    const duration = 5000;
+    const end = Date.now() + duration;
+
+    const interval = setInterval(function(){
+        if(Date.now() > end){
+            return clearInterval(interval);
+        }
+
+        confetti({
+            particleCount:10,
+            spread:90,
+            origin:{x:0}
+        });
+
+        confetti({
+            particleCount:10,
+            spread:90,
+            origin:{x:1}
+        });
+
+    },250);
+}
+
+window.onload=celebrate;
+</script>
+
+</body>
+</html>
